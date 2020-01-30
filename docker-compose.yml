@@ -1,0 +1,32 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - socks:/socks
+    environment:
+      SECRET_KEY: '94023a35686f5ff2583e0f01d012396b689cc79a284bcff36cbc197278621a05'
+      GID: 101
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - socks:/socks
+      - ./config:/etc/nginx/conf.d
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+
+
+volumes:
+  socks:
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.234.0/24

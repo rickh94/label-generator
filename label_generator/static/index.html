@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Label Generator</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+        rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+<div class="container mt-5 mx-4 lg:mx-auto">
+  <header>
+    <h1 class="text-2xl text-teal-700 font-bold">Music Filing Label Generator</h1>
+  </header>
+  <form action="/" method="post" class="w-3/4">
+    <div class="block w-full">
+      <label for="title" class="text-teal-700 block pl-2 mt-4">Piece Title</label>
+      <input
+          type="text"
+          id="title"
+          class="bg-transparent border-b border-teal-600 pl-2 p-1 w-full text-teal-900"
+          name="title"
+      >
+    </div>
+    <div class="block w-full mt-4 mb-2">
+      <label for="parts" class="text-teal-700 block pl-2 mt-1">
+        Part File Labels (One per line)
+      </label>
+      <p class="text-xs text-gray-600 ml-2">(Click to add commonly used labels)</p>
+      <div class="block row ml-2 my-1">
+        <button
+            class="text-sm bg-transparent border border-teal-700 text-teal-800 p-1 hover:bg-teal-700 hover:text-gray-100 mr-1"
+            id="part-strings"
+            type="button"
+            onclick="addToPartsValue('Violin 1\nViolin 2\nViola\nCello\nBass')"
+        >Strings
+        </button>
+        <button
+            class="text-sm bg-transparent border border-teal-700 text-teal-800 p-1 hover:bg-teal-700 hover:text-gray-100 mr-1"
+            id="part-piano"
+            onclick="addToPartsValue('Piano')"
+            type="button"
+        >Piano
+        </button>
+        <button
+            class="text-sm bg-transparent border border-teal-700 text-teal-800 p-1 hover:bg-teal-700 hover:text-gray-100 mr-1"
+            id="part-percussion"
+            type="button"
+            onclick="addToPartsValue('Percussion')"
+        >Percussion
+        </button>
+        <button
+            class="text-sm bg-transparent border border-teal-700 text-teal-800 p-1 hover:bg-teal-700 hover:text-gray-100 mr-1"
+            id="part-choir"
+            onclick="addToPartsValue('Choir')"
+            type="button"
+        >Choir
+        </button>
+      </div>
+      <textarea
+          id="parts"
+          class="bg-transparent border-b border-teal-600 pl-2 p-1 w-full text-teal-900 h-40"
+          name="parts"
+      ></textarea>
+    </div>
+    <input
+        type="submit"
+        value="Submit"
+        class="mt-2 bg-teal-600 text-gray-100 cursor-pointer p-2 hover:bg-teal-400 mx-2"
+    >
+    <button
+        type="reset"
+        class="mt-2 bg-red-600 text-gray-100 cursor-pointer p-2 hover:bg-red-400"
+    >Clear
+    </button>
+  </form>
+</div>
+<script>
+  const $parts = document.getElementById('parts');
+
+  function addToPartsValue(nextValue) {
+    if ($parts.value.length > 0) {
+      $parts.value = $parts.value + '\n'
+    }
+    $parts.value = $parts.value + nextValue
+  }
+</script>
+</body>
+</html>
