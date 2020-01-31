@@ -9,6 +9,7 @@ verify_ssl = true
 bottle = "*"
 jinja2 = "*"
 uwsgi = "*"
+weasyprint = "*"
 
 [requires]
 python_version = "3.8"

@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Labels</title>
+  <style>
+    @page {
+      size: Letter;
+      margin: 1in;
+    }
+
+    .label {
+      height: 0.5in;
+      width: 2in;
+      box-sizing: border-box;
+      padding: 0.25rem;
+      font-weight: bold;
+      text-align: center;
+      border: 1px dashed lightgray;
+      border-top: none
+    }
+
+    .label:first-child {
+      border-top: 1px dashed lightgray;
+    }
+
+    .container {
+      display: grid;
+    }
+
+  </style>
 </head>
 <body>
+<div class="container">
+  {% for label_name in labels %}
+  <div class="label border border-black border-dashed p-1">
+      {{ label_name }}
+  </div>
+  <div class="label border border-black border-dashed p-1">
+  </div>
+  {% endfor %}
+</div>
+
 
 </body>
 </html>
