@@ -23,7 +23,7 @@ def index():
 def create_label():
     title = request.forms.get("title")
     parts = request.forms.get("parts")
-    parts = parts.split("\n")
+    parts = parts.replace("\r", "").split("\n")
     title_words = title.split(" ")
     if len(title_words) == 1:
         title_prefix = title[:2]
@@ -31,7 +31,12 @@ def create_label():
         title_prefix = "".join(word[0].upper() for word in title_words)
     part_labels = [f"{title_prefix}-{part_name}" for part_name in parts]
     all_labels = [title] + part_labels
-    output_dir = render_page(all_labels)
+    label_rows = []
+    prev_index = 0
+    for i in range(3, len(all_labels) + 2, 3):
+        label_rows.append(all_labels[prev_index:i])
+        prev_index = i
+    output_dir = render_page(label_rows)
     return static_file(
         "labels.pdf",
         root=output_dir,
@@ -40,9 +45,9 @@ def create_label():
     )
 
 
-def render_page(labels):
+def render_page(label_rows):
     tmpdir = Path(tempfile.mkdtemp())
-    html = main_template.render(labels=labels)
+    html = main_template.render(label_rows=label_rows)
     tmp_out = tmpdir / "output.html"
     with tmp_out.open("w") as html_file:
         html_file.write(html)

@@ -9,37 +9,47 @@
       margin: 1in;
     }
 
-    .label {
+
+    table, td {
+      border: 1px dashed darkgray;
+      border-collapse: collapse;
+      width: 6in;
+    }
+
+    tr {
       height: 0.5in;
+    }
+
+    td {
       width: 2in;
-      box-sizing: border-box;
       padding: 0.25rem;
       font-weight: bold;
       text-align: center;
-      border: 1px dashed lightgray;
-      border-top: none
-    }
-
-    .label:first-child {
-      border-top: 1px dashed lightgray;
-    }
-
-    .container {
-      display: grid;
     }
 
   </style>
 </head>
 <body>
-<div class="container">
-  {% for label_name in labels %}
-  <div class="label border border-black border-dashed p-1">
-      {{ label_name }}
-  </div>
-  <div class="label border border-black border-dashed p-1">
-  </div>
-  {% endfor %}
-</div>
+  <table>
+    <tbody>
+    {% for label_row in label_rows %}
+      <tr>
+      {% for label_name in label_row %}
+          <td>
+          {{ label_name }}
+          </td>
+      {% endfor %}
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    {% endfor %}
+
+    
+    </tbody>
+  </table>
 
 
 </body>
