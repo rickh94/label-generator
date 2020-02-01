@@ -21,8 +21,8 @@ def index():
 
 @post("/")
 def create_label():
-    title = request.forms.get("title")
-    parts = request.forms.get("parts")
+    title = request.forms.getunicode("title")
+    parts = request.forms.getunicode("parts")
     parts = parts.replace("\r", "").split("\n")
     title_words = title.split(" ")
     if len(title_words) == 1:
